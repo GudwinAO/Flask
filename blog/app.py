@@ -1,18 +1,19 @@
 
-from views.users import users_app
-from views.articles import articles_app
+from .views.users import users_app
+from .views.articles import articles_app
 
 from flask import Flask, request, g, render_template
 import time
 from werkzeug.exceptions import BadRequest
+
+def create_app():
+    return app
 
 app = Flask(__name__)
 
 app.register_blueprint(users_app, url_prefix="/users")
 app.register_blueprint(articles_app, url_prefix="/articles")
 
-def create_app():
-    return app
 
 
 @app.route("/")
