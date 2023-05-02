@@ -6,8 +6,7 @@ from flask import Flask, request, g, render_template
 import time
 from werkzeug.exceptions import BadRequest
 
-def create_app():
-    return app
+
 
 app = Flask(__name__)
 
@@ -15,7 +14,9 @@ app.register_blueprint(users_app, url_prefix="/users")
 app.register_blueprint(articles_app, url_prefix="/articles")
 
 
-
+def create_app():
+    return app
+    
 @app.route("/")
 def index():
     return render_template("index.html")
