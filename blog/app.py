@@ -8,23 +8,26 @@ from werkzeug.exceptions import BadRequest
 from blog.models.database import db
 from blog.views.auth import login_manager, auth_app
 
+from blog.models.user import User
 
 
+__all__ = [
+"User",
+]
 
 app = Flask(__name__)
 
 app.register_blueprint(users_app, url_prefix="/users")
 app.register_blueprint(articles_app, url_prefix="/articles")
 
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/blog.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
-
 app.config["SECRET_KEY"] = "abcdefg123456"
 app.register_blueprint(auth_app, url_prefix="/auth")
 login_manager.init_app(app)
-
 
 @app.cli.command("init-db")
 def init_db():
@@ -50,22 +53,6 @@ def create_users():
     db.session.add(james)
     db.session.commit()
     print("done! created users:", admin, james)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def create_app():
@@ -147,3 +134,4 @@ def handle_zero_division_error(error):
 #         response.headers["process-time"] = time()-g.start_time
         
 #     return response 
+

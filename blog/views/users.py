@@ -17,5 +17,5 @@ def user_details(user_id: int):
     user = User.query.filter_by(id=user_id).one_or_none()
     if user is None:
         raise NotFound(f"User #{user_id} doesn't exist!")
-        
+
     return render_template("users/details.html", user=user)
