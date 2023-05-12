@@ -3,7 +3,6 @@ from .views.users import users_app
 from .views.articles import articles_app
 
 from flask import Flask, request, g, render_template
-import time
 from werkzeug.exceptions import BadRequest
 
 from blog.models.database import db
