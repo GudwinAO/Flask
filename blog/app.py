@@ -152,10 +152,10 @@ def create_tags():
     "sqlalchemy",
     "news",
     ]:
-    tag = Tag(name=name)
-    db.session.add(tag)
-    db.session.commit()
-    print("created tags")
+        tag = Tag(name=name)
+        db.session.add(tag)
+        db.session.commit()
+        print("created tags")
 
 app.register_blueprint(users_app, url_prefix="/users")
 
